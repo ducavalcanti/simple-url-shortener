@@ -1,4 +1,5 @@
 var express = require('express');
+var validUrl = require('valid-url');
 var Shorturl = require('../models/Shorturl') ;
 var router = express.Router();
 
@@ -16,7 +17,10 @@ router.get('/:id', (req, res, next) => {
 
 /* POST Creates a new shortened URL. */
 router.post('/new', (req, res, next) => {  
-  let shorturl = req.body.shorturl;  
+  let shorturl = req.body.url;
+  console.log(shorturl);
+  if (!validUrl.isUri(shorturl)) res.json({'error': 'invalid url'});  
+  
   Shorturl
     .findOne()
     .sort({date: -1})
