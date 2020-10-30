@@ -28,10 +28,7 @@ app.use(cors());
 // TODO: Remember to Routes setup only after database connection done
 var indexRouter = require('./routes/index');
 var shortenerRouter = require('./routes/shortener');
-app.use((req, res, next)=> {
-  console.log(req.body);
-  next();
-});
+
 app.use('/', indexRouter);
 app.use('/api/shorturl', shortenerRouter);
 app.get("/api/hello", (req, res) => {

@@ -5,6 +5,7 @@ var router = express.Router();
 
 /* GET shortened URL and redirects to it. */
 router.get('/:id', (req, res, next) => {
+  console.log(req.params);
   let id = req.params.id;
   const idRegex = /^[0-9]+$/;
   if (idRegex.test(id)){
