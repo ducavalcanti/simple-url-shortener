@@ -19,8 +19,7 @@ router.get('/:id', (req, res, next) => {
 router.post('/new', (req, res, next) => {  
   let shorturl = req.body.url;
   console.log(shorturl);
-  if (!validUrl.isUri(shorturl)) res.json({'error': 'invalid url'});  
-  
+  if (!validUrl.isWebUri(shorturl)) return res.json({'error': 'invalid url'});  
   Shorturl
     .findOne()
     .sort({date: -1})
